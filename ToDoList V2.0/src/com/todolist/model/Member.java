@@ -30,7 +30,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name="tblMember")
 public class Member implements Serializable{
 
-	
+	//my comment
 	private static final long serialVersionUID = 1L;
 	
 	@Id
