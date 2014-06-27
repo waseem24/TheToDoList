@@ -80,7 +80,6 @@ public class PerformanceDaoImpl implements PerformanceDao
 				 taskDone ++;
 			   }
 			}
-			System.out.println("Here we go!!!!!!");
 			Performance memberPerformance = getPerformance(member.getMemberId());
 			performance = (taskDone/memberPerformance.getNoOfTasks()*100);
 			notCompletedTasks = memberPerformance.getNoOfTasks() - taskDone;
