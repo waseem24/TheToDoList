@@ -40,7 +40,7 @@ public class PerformanceDaoImpl implements PerformanceDao
 	public Long updatePerformance(Performance performance) {
 		
 		sessionFactory.getCurrentSession().update(performance);
-		
+		System.out.println("checking");
 		return performance.getPerformanceId();
 	}
 
