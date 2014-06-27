@@ -73,9 +73,7 @@ public class PerformanceDaoImpl implements PerformanceDao
 		{
 			for(Task newTask :tasks)
 			{
-				
-			
-			  if(newTask.getMember().getMemberId().equals(member.getMemberId()))
+			  if(newTask.getMember().getMemberId().equals(member.getMemberId()) && newTask.getIsDone()== true)
 			   {
 				 taskDone ++;
 			   }
@@ -89,7 +87,6 @@ public class PerformanceDaoImpl implements PerformanceDao
 			newPerformance.setCompletedTasks((int)taskDone);
 			newPerformance.setNotCompletedTasks((int)notCompletedTasks);
 			newPerformance.setPercentageCompletedTask(performance);
-			System.out.println("Here we go");
 			Long updateMemberPerformance= updatePerformance(newPerformance);
 		}
 		
