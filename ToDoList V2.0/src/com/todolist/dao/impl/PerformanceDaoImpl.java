@@ -58,7 +58,7 @@ public class PerformanceDaoImpl implements PerformanceDao
 	}
 
 	
-	@Scheduled(fixedRate=2000)
+	@Scheduled(fixedRate=300000)// this method will be invoked after every 5 min to perform calculations & update relevant table
 	@Override
 	public void calcMemberPerformance() 
 	{
