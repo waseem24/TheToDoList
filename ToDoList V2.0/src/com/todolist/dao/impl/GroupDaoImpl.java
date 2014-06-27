@@ -40,7 +40,7 @@ public class GroupDaoImpl implements GroupDao {
 	@Transactional(readOnly = true)
 	public List<Group> groupList() {
 		
-		return sessionFactory.getCurrentSession().createCriteria(Group.class).list();
+		return (List<Group>)sessionFactory.getCurrentSession().createCriteria(Group.class).list();
 	}
 
 	@Transactional(readOnly = true)

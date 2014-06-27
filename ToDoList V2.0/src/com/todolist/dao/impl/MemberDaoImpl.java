@@ -2,9 +2,6 @@ package com.todolist.dao.impl;
 
 import java.util.List;
 
-
-
-
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -53,7 +50,7 @@ public class MemberDaoImpl implements MemberDao {
 	@SuppressWarnings("unchecked")
 	public List<Member> getAllMembers() {
 		
-		return sessionFactory.getCurrentSession().createQuery("from Member").list();	}
+		return (List<Member>)sessionFactory.getCurrentSession().createCriteria(Member.class).list();	}
 
 	@Transactional(readOnly = true)
 	public Member getMember(Long memberId) {
