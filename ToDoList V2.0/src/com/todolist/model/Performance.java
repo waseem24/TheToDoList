@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -29,30 +30,46 @@ public class Performance implements Serializable{
 	@Column(name="tblPerformance_Id",unique=true,nullable=false)
 	private Long performanceId;
 	
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Column(name="tblPerformance_NoOfTasks")
 	private int noOfTasks;
 	
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Column(name="tblPerformance_CompletedTasks")
 	private int completedTasks;
 	
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Column(name="tblPerformance_NotCompleted")
 	private int notCompletedTasks;
 	
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Column(name="tblPerformance_ToBeCompleted")
 	private int tasksToBeCompleted;
 	
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Column(name="tblPerformance_PercentageCompletedTask")
 	private double percentageCompletedTask;
 	
+	@DecimalMin(value ="0.00")
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Column(name="tblPerformance_PercentageNotCompleted")
 	private double percentageNotCompleted;
 	
+	@DecimalMin(value ="0.00")
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Column(name="tblPerformance_GroupPerformance")
 	private double groupPerformance;

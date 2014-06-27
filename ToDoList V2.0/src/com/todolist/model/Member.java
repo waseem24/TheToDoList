@@ -20,6 +20,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="tblMember")
@@ -33,18 +38,29 @@ public class Member implements Serializable{
 	@Column(name="tblMember_Id", unique = true)
 	private Long memberId;
 	
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Column(name="tblMember_Name")
 	private String name;
 	
+	@Size(min = 6, max = 13)
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Column(name="tblMember_Username", unique = true)
 	private String username;
 	
+	@Size(min = 6, max = 16)
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Column(name="tblMember_Password")
 	private String password;
 	
+	@Email
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Column(name="tblMember_Email", unique = true)
 	private String email;

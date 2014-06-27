@@ -12,6 +12,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name="tblGroup")
 public class Group implements Serializable{
@@ -24,14 +27,20 @@ public class Group implements Serializable{
 	@Column(name="tblGroup_Id", unique = true)
 	private Long groupId;
 	
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Column(name="tblGroup_Name")
 	private String name;
 	
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Column(name="tblGroup_ProjectName")
 	private String projectName;
 	
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Column(name="tblGroup_ProjectDescription")
 	private String description;

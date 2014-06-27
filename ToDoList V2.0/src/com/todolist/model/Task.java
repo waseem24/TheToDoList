@@ -15,6 +15,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name="tblTask")
 public class Task implements Serializable{
@@ -27,24 +30,34 @@ public class Task implements Serializable{
 	@Column(name="tblTask_Id")
 	private Long taskId;
 	
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Column(name="tblTask_Description")
 	private String description;
 	
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="tblTask_StartTime")
 	private Date startTime;
 	
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="tblTask_FinishTime")
 	private Date finishTime;
 	
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Column(name="tblTask_Comment")
 	private String comment;
 	
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Column(name="tblTask_TaskDone")
 	private Boolean isDone;

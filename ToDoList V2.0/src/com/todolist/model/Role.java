@@ -12,6 +12,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name = "tblRole")
 public class Role implements Serializable
@@ -24,6 +27,8 @@ public class Role implements Serializable
 	@Column(name ="tblRole_Id")
 	private Long roleId;
 	
+	@NotBlank
+	@NotEmpty
 	@NotNull
 	@Column(name ="tblRole_Name", unique=true)
 	private String roleName;
