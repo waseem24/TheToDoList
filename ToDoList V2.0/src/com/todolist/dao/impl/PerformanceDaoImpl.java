@@ -89,7 +89,7 @@ public class PerformanceDaoImpl implements PerformanceDao
 			newPerformance.setCompletedTasks((int)taskDone);
 			newPerformance.setNotCompletedTasks((int)notCompletedTasks);
 			newPerformance.setPercentageCompletedTask(performance);
-			
+			System.out.println("Here we go");
 			Long updateMemberPerformance= updatePerformance(newPerformance);
 		}
 		
