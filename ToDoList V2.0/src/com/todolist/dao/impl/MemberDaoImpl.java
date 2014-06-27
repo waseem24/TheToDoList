@@ -49,7 +49,7 @@ public class MemberDaoImpl implements MemberDao {
 		return (Member) criteria.uniqueResult();
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = true )
 	@SuppressWarnings("unchecked")
 	public List<Member> getAllMembers() {
 		
