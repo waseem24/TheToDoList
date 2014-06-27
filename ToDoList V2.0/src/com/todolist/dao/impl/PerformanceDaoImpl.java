@@ -48,7 +48,7 @@ public class PerformanceDaoImpl implements PerformanceDao
 	@Transactional(readOnly = false)
 	public List<Performance> getAllPerformances() {
 		
-		return sessionFactory.getCurrentSession().createCriteria(Performance.class).list();
+		return (List<Performance>)sessionFactory.getCurrentSession().createCriteria(Performance.class).list();
 	}
 
 	@Transactional(readOnly = false)
@@ -63,39 +63,61 @@ public class PerformanceDaoImpl implements PerformanceDao
 	public void calcMemberPerformance() 
 	{
 		List<Member> allMembers = memberDao.getAllMembers();
-		List<Task> tasks = taskDao.taskList();
-		double notCompletedTasks =0.0;
-		double taskDone = 0.0;
+		int notDoneTasks =0;
+		int taskDone = 0;
 		double performance = 0.0;
 		
 		
 		for(Member member: allMembers)
 		{
-			for(Task newTask :tasks)
-			{
-			  if(newTask.getMember().getMemberId().equals(member.getMemberId()) && newTask.getIsDone()== true)
-			   {
-				 taskDone ++;
-			   }
-			}
+			
+			taskDone = calcDoneTasks(member.getMemberId());
+			notDoneTasks = calcNotDoneTasks(member.getMemberId());
+			
 			Performance memberPerformance = getPerformance(member.getMemberId());
-			performance = (taskDone/memberPerformance.getNoOfTasks()*100);
-			notCompletedTasks = memberPerformance.getNoOfTasks() - taskDone;
 			
-			Performance newPerformance = new Performance();
+			performance = ((double)(taskDone/(memberPerformance.getNoOfTasks()))*100);
 			
-			newPerformance.setCompletedTasks((int)taskDone);
-			newPerformance.setNotCompletedTasks((int)notCompletedTasks);
-			newPerformance.setPercentageCompletedTask(performance);
-			Long updateMemberPerformance= updatePerformance(newPerformance);
+			
+			memberPerformance.setCompletedTasks(taskDone);
+			memberPerformance.setNotCompletedTasks(notDoneTasks);
+			memberPerformance.setPercentageCompletedTask(performance);
+			
+			Long updateMemberPerformance= updatePerformance(memberPerformance);
 		}
-		
+	}
+	@Override
+	public void calcGroupPerformance() 
+	{	
 	}
 
 	@Override
-	public void calcGroupPerformance() 
+	public int calcDoneTasks(Long id) 
 	{
-		
-		
+		int taskDone = 0;
+		List<Task> tasks = taskDao.taskList();
+		for(Task newTasks: tasks)
+		{
+			if(newTasks.getMember().getMemberId().equals(id) && newTasks.getIsDone()==true)
+			{
+				taskDone ++;
+			}
+		}
+		return taskDone;
+	}
+
+	@Override
+	public int calcNotDoneTasks(Long id) 
+	{
+		int taskNotDone = 0;
+		List<Task> tasks = taskDao.taskList();
+		for(Task newTasks: tasks)
+		{
+			if(newTasks.getMember().getMemberId().equals(id) && newTasks.getIsDone()==false)
+			{
+				taskNotDone ++;
+			}
+		}
+		return taskNotDone;
 	} 
 }
