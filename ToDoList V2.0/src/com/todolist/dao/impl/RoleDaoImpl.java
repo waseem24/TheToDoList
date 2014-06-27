@@ -38,7 +38,7 @@ public class RoleDaoImpl implements RoleDao
 	@Transactional(readOnly = false)
 	public List<Role> getAllPerformances() {
 		
-		return sessionFactory.getCurrentSession().createCriteria(Role.class).list();
+		return (List<Role>)sessionFactory.getCurrentSession().createCriteria(Role.class).list();
 	}
 
 	@Transactional(readOnly = false)

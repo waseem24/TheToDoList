@@ -30,7 +30,7 @@ public class TaskDaoImpl implements TaskDao {
 	@Transactional(readOnly = false)
 	public List<Task> taskList() {
 		
-		return sessionFactory.getCurrentSession().createCriteria(Task.class).list();
+		return (List<Task>)sessionFactory.getCurrentSession().createCriteria(Task.class).list();
 	}
 
 	@Transactional(readOnly = true)
