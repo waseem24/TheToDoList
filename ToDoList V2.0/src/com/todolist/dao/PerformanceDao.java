@@ -10,6 +10,8 @@ public interface PerformanceDao {
 	Long updatePerformance(Performance performance);
 	List<Performance> getAllPerformances();
 	Performance getPerformance(Long performanceId);
+	void calcMemberPerformance();
+	void calcGroupPerformance();
 	
 	
 }
