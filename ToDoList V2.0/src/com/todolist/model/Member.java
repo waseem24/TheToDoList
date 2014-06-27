@@ -37,6 +37,8 @@ public class Member implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="tblMember_Id", unique = true)
 	private Long memberId;
+	
+	
 	@NotBlank
 	@NotEmpty
 	@NotNull
