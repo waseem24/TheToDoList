@@ -3,6 +3,7 @@ package com.todolist.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +34,7 @@ public class Role implements Serializable
 	@Column(name ="tblRole_Name", unique=true)
 	private String roleName;
 	
-	@ManyToMany(mappedBy = "roles")
+	@ManyToMany(mappedBy = "roles",cascade = CascadeType.ALL)
 	private List<Member> members;
 	
 	public Role(){}

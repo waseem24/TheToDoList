@@ -79,7 +79,7 @@ public class Member implements Serializable{
 	@JoinColumn(name="tblGroup_Id")
 	private Group group;
 		
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",cascade = CascadeType.ALL)
 	private Set<Task> task;
 		
 	@OneToOne(mappedBy="member",cascade=CascadeType.ALL)
