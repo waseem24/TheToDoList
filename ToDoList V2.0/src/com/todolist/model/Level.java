@@ -24,6 +24,7 @@ public class Level implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="tblLevel_Id", unique=true)
 	private Long levelId;
+
 	
 	@NotBlank
 	@NotEmpty
