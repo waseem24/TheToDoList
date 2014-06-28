@@ -18,7 +18,7 @@ public class TaskDaoImpl implements TaskDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public Long saveTask(Task task) {
 		
 		sessionFactory.getCurrentSession().save(task);
@@ -27,13 +27,13 @@ public class TaskDaoImpl implements TaskDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Transactional(readOnly = false)
+	@Transactional(readOnly = true)
 	public List<Task> taskList() {
 		
-		return sessionFactory.getCurrentSession().createCriteria(Task.class).list();
+		return (List<Task>)sessionFactory.getCurrentSession().createCriteria(Task.class).list();
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = false)
 	public Long updateTask(Task task) {
 		
 		sessionFactory.getCurrentSession().update(task);
@@ -41,7 +41,7 @@ public class TaskDaoImpl implements TaskDao {
 		return task.getTaskId();
 	}
 
-	@Transactional(readOnly = false)
+	@Transactional(readOnly = true)
 	public Task getTask(Long taskId) {
 		
 		return (Task) sessionFactory.getCurrentSession().get(Task.class, taskId);

@@ -2,9 +2,6 @@ package com.todolist.dao.impl;
 
 import java.util.List;
 
-
-
-
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -17,11 +14,13 @@ import com.todolist.dao.MemberDao;
 import com.todolist.model.Member;
 
 @Repository("memberDao")
+@Transactional(propagation = Propagation.SUPPORTS)
 public class MemberDaoImpl implements MemberDao {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	@Transactional(readOnly = false,propagation = Propagation.REQUIRED)
 	public Long saveMember(Member member) {
 		
 		sessionFactory.getCurrentSession().save(member);
@@ -29,6 +28,7 @@ public class MemberDaoImpl implements MemberDao {
 		return member.getMemberId();
 	}
 
+	@Transactional(readOnly = false)
 	public Long updateMember(Member member) {
 		
 		sessionFactory.getCurrentSession().update(member);
@@ -46,11 +46,13 @@ public class MemberDaoImpl implements MemberDao {
 		return (Member) criteria.uniqueResult();
 	}
 
+	@Transactional(readOnly = true )
 	@SuppressWarnings("unchecked")
 	public List<Member> getAllMembers() {
 		
-		return sessionFactory.getCurrentSession().createQuery("from Member").list();	}
+		return (List<Member>)sessionFactory.getCurrentSession().createCriteria(Member.class).list();	}
 
+	@Transactional(readOnly = true)
 	public Member getMember(Long memberId) {
 		
 		return (Member) sessionFactory.getCurrentSession().get(Member.class, memberId);

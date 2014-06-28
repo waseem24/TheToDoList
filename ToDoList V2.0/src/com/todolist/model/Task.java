@@ -36,15 +36,13 @@ public class Task implements Serializable{
 	@Column(name="tblTask_Description")
 	private String description;
 	
-	@NotBlank
-	@NotEmpty
+
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="tblTask_StartTime")
 	private Date startTime;
 	
-	@NotBlank
-	@NotEmpty
+
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="tblTask_FinishTime")
@@ -56,11 +54,10 @@ public class Task implements Serializable{
 	@Column(name="tblTask_Comment")
 	private String comment;
 	
-	@NotBlank
-	@NotEmpty
+	
 	@NotNull
 	@Column(name="tblTask_TaskDone")
-	private Boolean isDone;
+	private boolean isDone;
 	
 	@ManyToOne
 	@JoinColumn(name="tblMember_MemberId")

@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin().loginPage("/login")
 				.usernameParameter("j_username")
 				.passwordParameter("j_password").permitAll()
-				.defaultSuccessUrl("/index").and().logout().logoutUrl("/login?logout").logoutSuccessUrl("/index").permitAll();
+				.defaultSuccessUrl("/index");
 	}
 
 }

@@ -3,6 +3,7 @@ package com.todolist.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,8 +46,8 @@ public class Group implements Serializable{
 	@Column(name="tblGroup_ProjectDescription")
 	private String description;
 	
-	@NotNull
-	@OneToMany(mappedBy="group")
+	
+	@OneToMany(mappedBy="group",cascade = CascadeType.ALL)
 	private Set<Member> member;
 
 	

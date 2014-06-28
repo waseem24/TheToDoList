@@ -45,6 +45,12 @@ public class Member implements Serializable{
 	@Column(name="tblMember_Name")
 	private String name;
 	
+	@NotBlank
+	@NotEmpty
+	@NotNull
+	@Column(name="tblMember_Surname")
+	private String surname;
+	
 	@Size(min = 6, max = 13)
 	@NotBlank
 	@NotEmpty
@@ -73,7 +79,7 @@ public class Member implements Serializable{
 	@JoinColumn(name="tblGroup_Id")
 	private Group group;
 		
-	@OneToMany(mappedBy="member")
+	@OneToMany(mappedBy="member",cascade = CascadeType.ALL)
 	private Set<Task> task;
 		
 	@OneToOne(mappedBy="member",cascade=CascadeType.ALL)
@@ -176,6 +182,14 @@ public class Member implements Serializable{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	

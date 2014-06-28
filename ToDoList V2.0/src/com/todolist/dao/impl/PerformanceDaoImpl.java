@@ -28,7 +28,7 @@ public class PerformanceDaoImpl implements PerformanceDao
 	@Autowired
 	private TaskDao taskDao;
 
-	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public Long savePerformance(Performance performance) {
 		
 		sessionFactory.getCurrentSession().save(performance);
@@ -36,7 +36,7 @@ public class PerformanceDaoImpl implements PerformanceDao
 		return performance.getPerformanceId();
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = false)
 	public Long updatePerformance(Performance performance) {
 		
 		sessionFactory.getCurrentSession().update(performance);
@@ -45,57 +45,80 @@ public class PerformanceDaoImpl implements PerformanceDao
 	}
 
 	@SuppressWarnings("unchecked")
-	@Transactional(readOnly = false)
+	@Transactional(readOnly = true)
 	public List<Performance> getAllPerformances() {
 		
-		return sessionFactory.getCurrentSession().createCriteria(Performance.class).list();
+		return (List<Performance>)sessionFactory.getCurrentSession().createCriteria(Performance.class).list();
 	}
 
-	@Transactional(readOnly = false)
+	@Transactional(readOnly = true)
 	public Performance getPerformance(Long performanceId) {
 		
 		return (Performance) sessionFactory.getCurrentSession().get(Performance.class, performanceId);
 	}
 
-	
-	@Scheduled(fixedRate=300000)// this method will be invoked after every 5 min to perform calculations & update relevant table
+	@Transactional(readOnly = true)
+//	@Scheduled(fixedRate=300000)// this method will be invoked after every 5 min to perform calculations & update relevant table
 	@Override
 	public void calcMemberPerformance() 
 	{
 		List<Member> allMembers = memberDao.getAllMembers();
-		List<Task> tasks = taskDao.taskList();
-		double notCompletedTasks =0.0;
-		double taskDone = 0.0;
+		int notDoneTasks =0;
+		int taskDone = 0;
 		double performance = 0.0;
 		
 		
 		for(Member member: allMembers)
 		{
-			for(Task newTask :tasks)
-			{
-			  if(newTask.getMember().getMemberId().equals(member.getMemberId()) && newTask.getIsDone()== true)
-			   {
-				 taskDone ++;
-			   }
-			}
+			
+			taskDone = calcDoneTasks(member.getMemberId());
+			notDoneTasks = calcNotDoneTasks(member.getMemberId());
+			
 			Performance memberPerformance = getPerformance(member.getMemberId());
-			performance = (taskDone/memberPerformance.getNoOfTasks()*100);
-			notCompletedTasks = memberPerformance.getNoOfTasks() - taskDone;
 			
-			Performance newPerformance = new Performance();
+			performance = ((double)(taskDone/(memberPerformance.getNoOfTasks()))*100);
 			
-			newPerformance.setCompletedTasks((int)taskDone);
-			newPerformance.setNotCompletedTasks((int)notCompletedTasks);
-			newPerformance.setPercentageCompletedTask(performance);
-			Long updateMemberPerformance= updatePerformance(newPerformance);
+			
+			memberPerformance.setCompletedTasks(taskDone);
+			memberPerformance.setNotCompletedTasks(notDoneTasks);
+			memberPerformance.setPercentageCompletedTask(performance);
+			
+			Long updateMemberPerformance= updatePerformance(memberPerformance);
 		}
-		
-	}
 
+	}
 	@Override
 	public void calcGroupPerformance() 
+	{	
+
+	}
+	
+	public int calcDoneTasks(Long id) 
 	{
-		
-		
+		int taskDone = 0;
+		List<Task> tasks = taskDao.taskList();
+		for(Task newTasks: tasks)
+		{
+			if(newTasks.getMember().getMemberId().equals(id) && newTasks.getIsDone()==true)
+			{
+				taskDone ++;
+			}
+		}
+		return taskDone;
+	}
+
+
+	public int calcNotDoneTasks(Long id) 
+	{
+		int taskNotDone = 0;
+		List<Task> tasks = taskDao.taskList();
+		for(Task newTasks: tasks)
+		{
+			if(newTasks.getMember().getMemberId().equals(id) && newTasks.getIsDone()==false)
+			{
+				taskNotDone ++;
+			}
+		}
+		return taskNotDone;
 	} 
 }
