@@ -13,12 +13,10 @@ public interface PerformanceDao {
 	void calcMemberPerformance();
 	void calcGroupPerformance();
 	
-	
-	
-	
-	
 	int calcDoneTasks(Long id);
 	int calcNotDoneTasks(Long id);
+	int calculateNotDoneTasksForGroup(Long id);
+	int calculateDoneTasksForGroup(Long id);
 	
 	
 }
