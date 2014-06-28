@@ -85,12 +85,14 @@ public class PerformanceDaoImpl implements PerformanceDao
 			
 			Long updateMemberPerformance= updatePerformance(memberPerformance);
 		}
+
 	}
 	@Override
 	public void calcGroupPerformance() 
 	{	
-	}
 
+	}
+	
 	public int calcDoneTasks(Long id) 
 	{
 		int taskDone = 0;
@@ -104,6 +106,7 @@ public class PerformanceDaoImpl implements PerformanceDao
 		}
 		return taskDone;
 	}
+
 
 	public int calcNotDoneTasks(Long id) 
 	{

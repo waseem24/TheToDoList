@@ -14,4 +14,11 @@ public interface PerformanceDao {
 	void calcGroupPerformance();
 	
 	
+	
+	
+	
+	int calcDoneTasks(Long id);
+	int calcNotDoneTasks(Long id);
+	
+	
 }
