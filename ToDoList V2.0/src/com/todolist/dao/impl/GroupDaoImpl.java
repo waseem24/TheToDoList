@@ -20,7 +20,7 @@ public class GroupDaoImpl implements GroupDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	@Transactional(readOnly = false)
+	@Transactional(readOnly = false,propagation = Propagation.REQUIRED)
 	public Long saveGroup(Group group) {
 		
 		sessionFactory.getCurrentSession().save(group);
