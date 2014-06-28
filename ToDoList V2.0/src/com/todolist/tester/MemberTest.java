@@ -84,7 +84,8 @@ public class MemberTest {
 		Date startTime = sdf.parse("2014-06-27");
 		Date finishTime = sdf.parse("2014-06-30");
 		
-		 //Initializing task   	
+		
+		 //Initializing task. 	
 		task = new Task();
 				
 		task.setStartTime(startTime);
