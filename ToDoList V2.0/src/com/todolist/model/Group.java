@@ -45,7 +45,7 @@ public class Group implements Serializable{
 	@Column(name="tblGroup_ProjectDescription")
 	private String description;
 	
-	@NotNull
+	
 	@OneToMany(mappedBy="group")
 	private Set<Member> member;
 

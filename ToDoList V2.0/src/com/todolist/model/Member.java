@@ -43,7 +43,11 @@ public class Member implements Serializable{
 	@NotEmpty
 	@NotNull
 	@Column(name="tblMember_Name")
-	private String name;
+	private String name;@NotBlank
+	@NotEmpty
+	@NotNull
+	@Column(name="tblMember_Surname")
+	private String surname;
 	
 	@Size(min = 6, max = 13)
 	@NotBlank
@@ -176,6 +180,14 @@ public class Member implements Serializable{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	

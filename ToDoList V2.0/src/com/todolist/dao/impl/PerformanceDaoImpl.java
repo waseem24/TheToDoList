@@ -28,7 +28,7 @@ public class PerformanceDaoImpl implements PerformanceDao
 	@Autowired
 	private TaskDao taskDao;
 
-	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public Long savePerformance(Performance performance) {
 		
 		sessionFactory.getCurrentSession().save(performance);
@@ -36,7 +36,7 @@ public class PerformanceDaoImpl implements PerformanceDao
 		return performance.getPerformanceId();
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = false)
 	public Long updatePerformance(Performance performance) {
 		
 		sessionFactory.getCurrentSession().update(performance);
@@ -45,20 +45,20 @@ public class PerformanceDaoImpl implements PerformanceDao
 	}
 
 	@SuppressWarnings("unchecked")
-	@Transactional(readOnly = false)
+	@Transactional(readOnly = true)
 	public List<Performance> getAllPerformances() {
 		
 		return sessionFactory.getCurrentSession().createCriteria(Performance.class).list();
 	}
 
-	@Transactional(readOnly = false)
+	@Transactional(readOnly = true)
 	public Performance getPerformance(Long performanceId) {
 		
 		return (Performance) sessionFactory.getCurrentSession().get(Performance.class, performanceId);
 	}
 
-	
-	@Scheduled(fixedRate=300000)// this method will be invoked after every 5 min to perform calculations & update relevant table
+	@Transactional(readOnly = true)
+//	@Scheduled(fixedRate=300000)// this method will be invoked after every 5 min to perform calculations & update relevant table
 	@Override
 	public void calcMemberPerformance() 
 	{

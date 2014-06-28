@@ -18,7 +18,7 @@ public class RoleDaoImpl implements RoleDao
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public Long saveRole(Role role) {
 		
 		sessionFactory.getCurrentSession().save(role);
@@ -26,7 +26,7 @@ public class RoleDaoImpl implements RoleDao
 		return role.getRoleId();
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = false)
 	public Long updateRole(Role role) {
 
 		sessionFactory.getCurrentSession().update(role);
@@ -35,13 +35,13 @@ public class RoleDaoImpl implements RoleDao
 	}
 
 	@SuppressWarnings("unchecked")
-	@Transactional(readOnly = false)
+	@Transactional(readOnly = true)
 	public List<Role> getAllPerformances() {
 		
 		return (List<Role>)sessionFactory.getCurrentSession().createCriteria(Role.class).list();
 	}
 
-	@Transactional(readOnly = false)
+	@Transactional(readOnly = true)
 	public Role getRole(Long roleId) {
 		
 		return (Role) sessionFactory.getCurrentSession().get(Role.class, roleId);
