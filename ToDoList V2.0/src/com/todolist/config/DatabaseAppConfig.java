@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.todolist.model.Group;
 import com.todolist.model.MailDetail;
+import com.todolist.model.Meeting;
 import com.todolist.model.Member;
 import com.todolist.model.Performance;
 import com.todolist.model.Role;
@@ -42,7 +43,7 @@ public class DatabaseAppConfig {
 		sessionFactory.setDataSource(restDataSource());
 		sessionFactory
 				.setPackagesToScan(new String[] { "com.todolist.model" });
-		sessionFactory.setAnnotatedClasses(Member.class,Role.class,Task.class,Performance.class,Group.class,MailDetail.class);
+		sessionFactory.setAnnotatedClasses(Member.class,Role.class,Task.class,Performance.class,Group.class,MailDetail.class,Meeting.class);
 		sessionFactory.setHibernateProperties(hibernateProperties());
 		return sessionFactory;
 	}
