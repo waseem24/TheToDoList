@@ -19,16 +19,16 @@ public class MailDetail implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "MAIL_ID")
+	@Column(name = "tblMailDetail_MailId")
 	private Long mailId;
 	
-	@Column(name = "MAIL_SUBJECT")
+	@Column(name = "tblMailDetail_MailSubject")
 	private String mailSubject;
 	
-	@Column(name = "MAIL_TO")
+	@Column(name = "tblMailDetail_MailTo")
 	private String mailTo;
 	
-	@Column(name = "MAIL_MESSAGE")
+	@Column(name = "tblMailDetail_MailMessage")
 	private String mailMessage;
 
 	public Long getMailId() {
