@@ -56,5 +56,6 @@ public class MemberDaoImpl implements MemberDao {
 	public Member getMember(Long memberId) {
 		
 		return (Member) sessionFactory.getCurrentSession().get(Member.class, memberId);
-	}	
+	}
+
 }

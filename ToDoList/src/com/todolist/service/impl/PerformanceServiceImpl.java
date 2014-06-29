@@ -37,4 +37,8 @@ public class PerformanceServiceImpl implements PerformanceService
 
 		return performanceDao.getPerformance(performanceId);
 	}
+
+	public List<Performance> getTopFivePerformers() {
+		return performanceDao.getTopFivePerformers();
+	}
 }

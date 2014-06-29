@@ -10,5 +10,5 @@ public interface PerformanceService {
 	Long updatePerformance(Performance performance);
 	List<Performance> getAllPerformances();
 	Performance getPerformance(Long performanceId);
-	
+	List<Performance> getTopFivePerformers();
 }

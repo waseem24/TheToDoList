@@ -3,6 +3,7 @@ package com.todolist.dao.impl;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -168,5 +169,14 @@ public class PerformanceDaoImpl implements PerformanceDao
 			}
 		}
 		return groupNotDoneTasks;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = true)
+	public List<Performance> getTopFivePerformers() {
+		Query query= sessionFactory.getCurrentSession().createQuery("from Performance");
+		query.setMaxResults(5);
+		query.setFirstResult(0);
+		return (List<Performance>)query.list();
 	} 
 }

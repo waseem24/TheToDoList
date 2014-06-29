@@ -8,12 +8,14 @@ import javax.sql.rowset.serial.SerialBlob;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -64,8 +66,9 @@ public class MemberController {
 		return new ModelAndView("redirect:/sendMessage");
 	}
 	
-	@RequestMapping(value="showProfile")
-	public ModelAndView profile(){
+	@RequestMapping(value="showProfile/{memberName}")
+	public ModelAndView profile(@PathVariable(value="memberName")String name){
+		
 		return new ModelAndView("memberProfile");
 	}
 	

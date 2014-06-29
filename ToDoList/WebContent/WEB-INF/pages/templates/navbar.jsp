@@ -47,13 +47,14 @@
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href='<c:url value="/login"></c:url>' >Sign in</a></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
+						<security:authorize ifAnyGranted="ROLE_LEAD_PROGRAMMER,ROLE_GROUP_LEADER,ROLE_PROGRAMMER"><li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown">Profile<b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="showProfile">View Profile</a></li>
+							
+								<li><a href="showProfile/<security:authentication property="name"/>">View Profile</a></li>
 								<li class="divider"></li>
 								<li><a href='<c:url value="/login?logout"></c:url>' >Log Out</a></li>
-							</ul></li>
+							</ul></li></security:authorize>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->

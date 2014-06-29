@@ -9,6 +9,7 @@ public interface PerformanceDao {
 	Long savePerformance(Performance performance);
 	Long updatePerformance(Performance performance);
 	List<Performance> getAllPerformances();
+	List<Performance> getTopFivePerformers();
 	Performance getPerformance(Long performanceId);
 	void calcMemberPerformance();
 	void calcGroupPerformance();
