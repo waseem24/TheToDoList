@@ -16,28 +16,24 @@
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Link</a></li>
-						<li><a href="otherPage">Other Page</a></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
+						<security:authorize ifAnyGranted="ROLE_GROUP_LEADER,ROLE_LEAD_PROGRAMMER"><li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown">Manage Members <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">View Members</a></li>
+								<li><a href="viewMembers">View Members</a></li>
 								<li><a href="sendMessage">Send Message To Member</a></li>
-								<li class="divider"></li>
+								<security:authorize ifAnyGranted="ROLE_GROUP_LEADER"><li class="divider"></li>
 								<li><a href="addMember">Add Member</a></li>
-								<li><a href="#">Delete Member</a></li>
-							</ul></li>
-							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								<li><a href="#">Delete Member</a></li></security:authorize>
+							</ul></li></security:authorize>
+						<security:authorize ifAnyGranted="ROLE_LEAD_PROGRAMMER,ROLE_GROUP_LEADER,ROLE_PROGRAMMER,ROLE_GUEST">	<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown">Manage Tasks <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="fgh">Action</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
-								<li class="divider"></li>
-								<li><a href="#">Separated link</a></li>
-								<li class="divider"></li>
-								<li><a href="#">One more separated link</a></li>
-							</ul></li>
+								<security:authorize ifAnyGranted="ROLE_LEAD_PROGRAMMER,ROLE_GROUP_LEADER,ROLE_PROGRAMMER" ><li><a href="addTask">Add Task</a></li>
+								<li><a href="#">Complete Task</a></li>
+								<li class="divider"></li></security:authorize>
+								<li><a href="#">View Tasks</a></li>
+								<li><a href="#">View Completed Tasks</a></li>
+							</ul></li></security:authorize>
 					</ul>
 					<form class="navbar-form navbar-left" role="search">
 						<div class="form-group">

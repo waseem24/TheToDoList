@@ -9,6 +9,8 @@ import javax.sql.rowset.serial.SerialBlob;
 
 
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.mail.SimpleMailMessage;
@@ -21,8 +23,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.todolist.bean.MemberBean;
+import com.todolist.model.Group;
 import com.todolist.model.MailDetail;
 import com.todolist.model.Member;
+import com.todolist.service.GroupService;
 import com.todolist.service.MailDetailService;
 import com.todolist.service.MailService;
 import com.todolist.service.MemberService;
@@ -34,12 +38,30 @@ public class MemberController {
 	MemberService memberService;
 	
 	@Autowired
+	GroupService groupService;
+	
+	@Autowired
 	MailService mailService;
 	
 	@Autowired
 	MailDetailService mailDetailService;
 	@Autowired
 	SimpleMailMessage emailTemplate;
+	
+	@RequestMapping("viewMembers")
+	public ModelAndView viewMembers(){
+		ModelAndView model = new ModelAndView();
+		
+		model.addObject("allMembers", memberService.getAllMembers());
+		int i =0;
+		for(Group group: groupService.groupList()){
+			i++;
+			model.addObject("group"+i, group.getMember());
+		}
+		
+		return model;
+	}
+	
 	
 	@RequestMapping(value = "addMember")
 	public ModelAndView addMemberView(){

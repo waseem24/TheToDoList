@@ -28,11 +28,6 @@ public class IndexController {
  
 	}
 	
-	@RequestMapping("/otherPage")
-	public String test(){
-		return "test";
-	}
-	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login(
 		@RequestParam(value = "error", required = false) String error,
