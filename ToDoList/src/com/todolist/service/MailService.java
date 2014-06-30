@@ -8,4 +8,5 @@ public interface MailService {
 	public void setEmailTemplate(SimpleMailMessage emailTemplate);
 	public void setJavaMailSender(JavaMailSenderImpl javaMailSender);
 	public void sendMail();
+	public void sendMailToMember();
 }
