@@ -12,14 +12,14 @@
 	<div class="container">
 
 		<ul class="nav nav-tabs" id="myTab">
-			<li class="active"><a href="#tables" data-toggle="tab">tables</a></li>
-			<li><a href="#table" data-toggle="tab">table</a></li>
+			<li class="active"><a href="#tables" data-toggle="tab">Groups</a></li>
+			<li><a href="#table" data-toggle="tab">All Members</a></li>
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane fade in active" id="tables">
 				<div class="panel-group" id="accordion">
 				
-					<c:forEach items="allGroups" var="group">
+					<%-- <c:forEach items="allGroups" var="group">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4 class="panel-title">
@@ -52,7 +52,7 @@
 							</div>
 
 						</div>
-					</c:forEach>
+					</c:forEach> --%>
 				</div>
 
 			</div>

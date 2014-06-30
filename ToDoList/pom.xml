@@ -4,7 +4,7 @@
   <artifactId>ToDoList</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <repositories>
+   <repositories>
     <repository>
   	<id>Java.Net</id>
   	<url>http://download.java.net/maven/2/</url>
@@ -112,6 +112,45 @@
   	<artifactId>mockito-all</artifactId>
   	<version>1.9.5</version>
   </dependency>
+  
+ 
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.10-FINAL</version>
+        </dependency>
+ 
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>4.2.1</version>
+        </dependency>
+ 
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+ 
+        <dependency>
+            <groupId>commons-digester</groupId>
+            <artifactId>commons-digester</artifactId>
+            <version>2.1</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+ 
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+
+        <dependency>
+        	<groupId>net.sf.jasperreports</groupId>
+        	<artifactId>jasperreports</artifactId>
+        	<version>5.6.0</version>
+        </dependency>
    </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
