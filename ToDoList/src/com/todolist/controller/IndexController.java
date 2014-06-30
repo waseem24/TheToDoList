@@ -36,7 +36,7 @@ public class IndexController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login(
 		@RequestParam(value = "error", required = false) String error,
-		@RequestParam(value = "logout", required = false) String logout,HttpServletRequest req) {
+		@RequestParam(value = "logout", required = false) String logout) {
  
 		ModelAndView model = new ModelAndView();
 		if (error != null) {
@@ -45,7 +45,6 @@ public class IndexController {
  
 		if (logout != null) {
 			model.addObject("msg", "You've been logged out successfully.");
-	req.getSession().invalidate();
 		}
 		model.setViewName("login");
  

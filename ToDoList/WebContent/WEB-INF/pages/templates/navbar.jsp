@@ -53,7 +53,7 @@
 							
 								<li><a href="showProfile/<security:authentication property="name"/>">View Profile</a></li>
 								<li class="divider"></li>
-								<li><a href='<c:url value="/login?logout"></c:url>' >Log Out</a></li>
+								<li><a href='<c:url value="/logout"></c:url>' >Log Out</a></li>
 							</ul></li></security:authorize>
 					</ul>
 				</div>
